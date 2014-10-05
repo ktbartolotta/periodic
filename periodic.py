@@ -9,9 +9,7 @@ def _get_periodic_table(file):
 	table = []
 	table_file = open(file)
 	for row in table_file:
-		t = [r for r in row.replace(
-				"\t", " ").replace("\n","").split(
-				" ") if r != "" and r != "*"][:4]
+		t = row.split(",")
 		table.append(
 			{
 				"atomic_no": t[0],
@@ -27,14 +25,24 @@ def _get_periodic_table(file):
 def build_string(word):
 
 	table = _get_periodic_table("periodic_table.txt")
-	for x in range(0, len(word), 2):
-		print word[x], word[x+1] if (x+1) < len(word) else None
-		
+	match = []
+	def build(word):
+		el = [r for r.symbol in table if r.symbol == word[:2]]
+		if len(el) > 0:
+			match.append([el])
+			match.append(build(word[2:]))
+		else:
+			el = r for r.symbol in table if r.symbol == word[:1]]
+			if len(el) > 0:
+				match.append([el])
+				match.append(build(word[1:]))
+			
 
 
 def main():
 
-	print build_string("keith")
+	#print build_string("keith")
+	pprint.pprint(_get_periodic_table("periodic_table.txt"))
 
 
 if __name__ == "__main__":
