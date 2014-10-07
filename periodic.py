@@ -33,7 +33,7 @@ def build_string(word):
 					if r["symbol"].upper() == word_[:length].upper()]
 				if len(el) > 0:
 					match.append(el[0])
-					match.append(build(word_[length:], match))
+					build(word_[length:], match)
 
 		return match
 
