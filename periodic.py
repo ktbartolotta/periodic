@@ -2,6 +2,7 @@
 
 import pprint
 import re
+import sys
 
 
 def _get_periodic_table(file):
@@ -39,10 +40,10 @@ def build_string(word):
 	return build(word,[])			
 
 
-def main():
+def main(word):
 
-	print build_string("pasta")
+	print build_string(word)
 
 
 if __name__ == "__main__":
-	main()
+	main(sys.argv[1])
