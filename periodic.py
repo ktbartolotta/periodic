@@ -25,24 +25,23 @@ def _get_periodic_table(file):
 def build_string(word):
 
 	table = _get_periodic_table("periodic_table.txt")
-	match = []
-	def build(word):
-		el = [r for r.symbol in table if r.symbol == word[:2]]
-		if len(el) > 0:
-			match.append([el])
-			match.append(build(word[2:]))
-		else:
-			el = r for r.symbol in table if r.symbol == word[:1]]
-			if len(el) > 0:
-				match.append([el])
-				match.append(build(word[1:]))
-			
+	def build(word_, match):
+		for length in xrange(2, 0, -1):
+			if len(word_) >= length: 
+				el = [r["symbol"] for r in table \
+					if r["symbol"].upper() == word_[:length].upper()]
+				if len(el) > 0:
+					match.append(el[0])
+					match.append(build(word_[length:], match))
+
+		return match
+
+	return build(word,[])			
 
 
 def main():
 
-	#print build_string("keith")
-	pprint.pprint(_get_periodic_table("periodic_table.txt"))
+	print build_string("pasta")
 
 
 if __name__ == "__main__":
