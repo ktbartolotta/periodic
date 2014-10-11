@@ -25,6 +25,7 @@ def _get_periodic_table(file):
 
 def build_string(word):
 
+	matches = []
 	table = _get_periodic_table("periodic_table.txt")
 	def build(word_, match):
 		for length in xrange(2, 0, -1):
@@ -32,12 +33,16 @@ def build_string(word):
 				el = [r["symbol"] for r in table \
 					if r["symbol"].upper() == word_[:length].upper()]
 				if len(el) > 0:
-					match.append(el[0])
-					build(word_[length:], match)
+					matched = list(match + el)
+					if "".join(matched).upper() == word.upper():
+						matches.append(matched)
+						return
+					else:
+						build(word_[length:], matched)
 
-		return match
-
-	return build(word,[])			
+		return
+	build(word, [])
+	return matches			
 
 
 def main(word):
