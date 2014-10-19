@@ -83,7 +83,7 @@ class Application(ttk.Frame):
 
         self.word = Tkinter.StringVar()
         entry = ttk.Entry(self, textvariable=self.word)
-        entry.bind("<KeyPress-Return>", print_word)
+        entry.bind("<KeyRelease>", print_word)
         entry.pack()
         self.word_holder = ttk.Frame(self)
         self.word_holder.pack()
