@@ -69,9 +69,12 @@ class Application(ttk.Frame):
 
         def print_word(event):
 
+            self.word_holder2.destroy()
+            self.word_holder2 = ttk.Frame(self.word_holder)
+            self.word_holder2.pack()
             elements = periodic.get_periodics(self.word.get())
             for match in elements:
-                holder = ttk.Label(self.word_holder)
+                holder = ttk.Label(self.word_holder2)
                 for el in match:
                     ElementLabel(
                         holder, el
@@ -84,6 +87,8 @@ class Application(ttk.Frame):
         entry.pack()
         self.word_holder = ttk.Frame(self)
         self.word_holder.pack()
+        self.word_holder2 = ttk.Frame(self.word_holder)
+        self.word_holder2.pack()
 
 
 if __name__ == "__main__":
