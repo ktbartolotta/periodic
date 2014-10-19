@@ -50,7 +50,7 @@ class ElementLabel(ttk.Label):
         ttk.Label(
             self,
             text=element["atomic_wt"],
-            style="AtomiWt.Element.TLabel"
+            style="AtomicWt.Element.TLabel"
         ).pack()
 
 
@@ -67,14 +67,23 @@ class Application(ttk.Frame):
 
     def create_widgets(self):
 
-        elements = periodic.get_periodics("bacon")
-        for match in elements:
-            holder = ttk.Label(self)
-            for el in match:
-                ElementLabel(
-                    holder, el
-                ).pack(side=Tkinter.LEFT, padx=5, pady=5)
-            holder.pack()
+        def print_word(event):
+
+            elements = periodic.get_periodics(self.word.get())
+            for match in elements:
+                holder = ttk.Label(self.word_holder)
+                for el in match:
+                    ElementLabel(
+                        holder, el
+                    ).pack(side=Tkinter.LEFT, padx=5, pady=5)
+                holder.pack()
+
+        self.word = Tkinter.StringVar()
+        entry = ttk.Entry(self, textvariable=self.word)
+        entry.bind("<KeyPress-Return>", print_word)
+        entry.pack()
+        self.word_holder = ttk.Frame(self)
+        self.word_holder.pack()
 
 
 if __name__ == "__main__":

@@ -12,27 +12,27 @@ def load_styles():
 
     ttk.Style().configure(
         "Symbol.Element.TLabel",
-        font=("Segoe UI", 32),
+        font=("Segoe UI", 16, "bold")
     )
 
     ttk.Style().configure(
         "AtomicNo.Element.TLabel",
-        font=("Segoe UI", 20)
+        font=("Segoe UI", 10)
     )
 
     ttk.Style().configure(
         "Name.Element.TLabel",
-        font=("Segoe UI", 14)
+        font=("Segoe UI", 8)
     )
 
     ttk.Style().configure(
-        "AtomiWt.Element.TLabel",
-        font=("Segoe UI", 14)
+        "AtomicWt.Element.TLabel",
+        font=("Segoe UI", 7)
     )
 
     ttk.Style().configure(
         "Quit.TButton",
         background="red",
         forground="white",
-        font=("Arial", 16)
+        font=("Arial", 8)
     )

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import sys
 import pprint
+
 
 def _get_periodic_table(file):
 
